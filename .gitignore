@@ -1,2 +1,8 @@
 .idea/workspace.xml
 *.pyc
+cpp/CMakeCache.txt
+cpp/CMakeFiles/
+cpp/CTestTestfile.cmake
+cpp/GildedRose
+cpp/GildedRoseTextTests
+cpp/cmake_install.cmake

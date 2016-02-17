@@ -17,6 +17,22 @@ Create a clone of both GildedRose-Refactoring-Kata and googletest in a directory
     git clone https://github.com/emilybache/GildedRose-Refactoring-Kata
     git clone https://github.com/google/googletest
 
+Using CMake
+-----------
+Make googletest by running make in subfolder googletest/googletest/make:
+
+    cd googletest/googletest/make
+	cmake .
+	cmake --build .
+
+Setup GildedRose:
+
+    cd ${ROOT_INSTALL_DIR}/GildedRose-Refactoring-Kata/cpp
+	cmake -DGTEST_ROOT=../../googletest/googletest .
+	cmake --build .
+
+Using make
+----------
 Make googletest by running make in subfolder googletest/googletest/make:
 
     cd googletest/googletest/make
@@ -31,8 +47,13 @@ Make the GildedRose-Refactoring-Kata:
 
     make
 
+Rebuilding and running the tests
+--------------------------------
+
 Then you should be able to run the tests:
 
-    ./run_once.sh
+    ./make-and-run.sh
+or
+    ./cmake-and-run.sh
 
 If you have been successful, then you should see a failing test, "GildedRoseTest.Foo".
