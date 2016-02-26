@@ -14,14 +14,15 @@ More Verbose Instructions
 Create a clone of both GildedRose-Refactoring-Kata and googletest in a directory we'll call ${ROOT_INSTALL_DIR}:
 
     cd ${ROOT_INSTALL_DIR}
-    git clone https://github.com/emilybache/GildedRose-Refactoring-Kata
+    git clone https://github.com/dmari/GildedRose-Refactoring-Kata
     git clone https://github.com/google/googletest
 
 Using CMake
 -----------
-Make googletest by running make in subfolder googletest/googletest/make:
+On Mac:
+Make googletest by running make in subfolder googletest/googletest:
 
-    cd googletest/googletest/make
+    cd googletest/googletest
 	cmake .
 	cmake --build .
 
@@ -31,29 +32,24 @@ Setup GildedRose:
 	cmake -DGTEST_ROOT=../../googletest/googletest .
 	cmake --build .
 
-Using make
-----------
-Make googletest by running make in subfolder googletest/googletest/make:
+On Windows:
+Make googletest by running make in subfolder googletest/googletest:
 
-    cd googletest/googletest/make
-    make
+    cd googletest/googletest
+	cmake -G "Visual Studio 14 2015" .
+	cmake --build .
 
-Create a softlink in the GildedRose-Refactoring-Kata clone pointing at the googletest code:
+Setup GildedRose:
 
     cd ${ROOT_INSTALL_DIR}/GildedRose-Refactoring-Kata/cpp
-    ln -s ${ROOT_INSTALL_DIR}/googletest/googletest gtest
-
-Make the GildedRose-Refactoring-Kata:
-
-    make
-
+	cmake -G "Visual Studio 14 2015" -DGTEST_ROOT=../../googletest/googletest -DGTEST_LIBRARY=../../googletest/googletest/Debug/gtest.lib -DGTEST_MAIN_LIBRARY=../../googletest/googletest/Debug/gtest_main.lib .
+	cmake --build .
+	
 Rebuilding and running the tests
 --------------------------------
 
 Then you should be able to run the tests:
 
-    ./make-and-run.sh
-or
     ./cmake-and-run.sh
 
 If you have been successful, then you should see a failing test, "GildedRoseTest.Foo".

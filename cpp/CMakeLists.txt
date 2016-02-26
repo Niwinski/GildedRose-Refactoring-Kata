@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(cpp)
 
-# CMake FindThreads is broken until 3.1
-#find_package(Threads REQUIRED)
-set(CMAKE_THREAD_LIBS_INIT pthread)
-
+if (MSVC)
+	foreach(flag_var
+			CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+			CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+		if(${flag_var} MATCHES "/MD")
+			string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
+		endif(${flag_var} MATCHES "/MD")
+	endforeach(flag_var)
+endif ()
+ 
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
