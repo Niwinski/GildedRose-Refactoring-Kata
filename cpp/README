@@ -1,15 +1,5 @@
-TL;DR;
--------
-run-once.sh runs your tests once
-
-Before this will work you will need:
-  - make and a C++ compiler (like gcc) is installed on your system and is in the PATH
-  - The GTest framework in the directory gtest.
-  - If your IDE does the compilation and linking, you should remove the first 3 lines
-    in the run-once.sh file.
-
-More Verbose Instructions
--------------------------
+Instructions
+------------
 
 Create a clone of both GildedRose-Refactoring-Kata and googletest in a directory we'll call ${ROOT_INSTALL_DIR}:
 
@@ -17,9 +7,9 @@ Create a clone of both GildedRose-Refactoring-Kata and googletest in a directory
     git clone https://github.com/dmari/GildedRose-Refactoring-Kata
     git clone https://github.com/google/googletest
 
-Using CMake
------------
-On Mac:
+OS X
+----
+
 Make googletest by running make in subfolder googletest/googletest:
 
     cd googletest/googletest
@@ -32,7 +22,9 @@ Setup GildedRose:
 	cmake -DGTEST_ROOT=../../googletest/googletest .
 	cmake --build .
 
-On Windows:
+Windows (VS2015)
+----------------
+
 Make googletest by running make in subfolder googletest/googletest:
 
     cd googletest/googletest
@@ -44,12 +36,12 @@ Setup GildedRose:
     cd ${ROOT_INSTALL_DIR}/GildedRose-Refactoring-Kata/cpp
 	cmake -G "Visual Studio 14 2015" -DGTEST_ROOT=../../googletest/googletest -DGTEST_LIBRARY=../../googletest/googletest/Debug/gtest.lib -DGTEST_MAIN_LIBRARY=../../googletest/googletest/Debug/gtest_main.lib .
 	cmake --build .
-	
-Rebuilding and running the tests
---------------------------------
 
-Then you should be able to run the tests:
+NOTE: you may try with other Visual Studio generators, but VS2012 is known to not work.
 
-    ./cmake-and-run.sh
+Running the tests
+-----------------
 
-If you have been successful, then you should see a failing test, "GildedRoseTest.Foo".
+The tests are in the GildedRose[.exe] binary file. GildedRoseTextTests[.exe] outputs a one month evolution so that you
+can identify issues with TextTest (http://texttest.sourceforge.net). You can also store the expected output and diff it
+with next runs.
